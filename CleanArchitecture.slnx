@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/API/">
+    <Project Path="CleanArchitecture.API/CleanArchitecture.API.csproj" />
+  </Folder>
+  <Folder Name="/Application/">
+    <Project Path="CleanArchitecture.Application/CleanArchitecture.Application.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="CleanArchitecture.Domain/CleanArchitecture.Domain.csproj" />
+    <Project Path="CleanArchitecture.DomainServices/CleanArchitecture.DomainServices.csproj" />
+  </Folder>
+  <Folder Name="/Infra/">
+    <Project Path="CleanArchitecture.InfraStreucture/CleanArchitecture.InfraStreucture.csproj" />
+  </Folder>
+</Solution>
