@@ -10,6 +10,6 @@
     <Project Path="CleanArchitecture.DomainServices/CleanArchitecture.DomainServices.csproj" />
   </Folder>
   <Folder Name="/Infra/">
-    <Project Path="CleanArchitecture.InfraStreucture/CleanArchitecture.InfraStreucture.csproj" />
+    <Project Path="CleanArchitecture.Infraestructure/CleanArchitecture.Infraestructure.csproj" />
   </Folder>
 </Solution>
