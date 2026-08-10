@@ -12,5 +12,9 @@
         // A category has multiple products.
         public List<Product> Products { get; set; }
         #endregion
+        public void Update(string description)
+        {
+            Description = description;
+        }
     }
 }
