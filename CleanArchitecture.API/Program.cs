@@ -1,12 +1,13 @@
-using Microsoft.Extensions.Options;
-using Scalar.AspNetCore;
-using CleanArchitecture.Infraestructure.Data;
-using Microsoft.EntityFrameworkCore;
+using CleanArchitecture.Application.AutoMapper;
 using CleanArchitecture.Application.Services;
 using CleanArchitecture.Domain.Repositories.Interfaces;
-using CleanArchitecture.Infraestructure.Repositories;
 using CleanArchitecture.Domain.Services;
 using CleanArchitecture.DomainServices.Services;
+using CleanArchitecture.Infraestructure.Data;
+using CleanArchitecture.Infraestructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddSingleton(ConfigAutoMapper.AutoMapperConfiguration().CreateMapper());
 
 builder.Services.AddDbContext<CleanArchitectureContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
