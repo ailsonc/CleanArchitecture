@@ -8,10 +8,21 @@ namespace CleanArchitecture.Application.AutoMapper.Mappers
     {
         public CategoryMapper()
         {
-            CreateMap<CategoryViewModel, Category>()
+            CreateMap<CategoryBasicViewModel, Category>()
+                .ForMember(x => x.Description, y => y.MapFrom(z => z.Description))
+                .ForMember(x => x.RegistrationDate, y => y.MapFrom(z => DateTime.Now));
+
+            CreateMap<CategoryFullViewModel, Category>()
                 .ForMember(x => x.IdCategory, y => y.MapFrom(z => z.IdCategory))
                 .ForMember(x => x.Description, y => y.MapFrom(z => z.Description))
                 .ForMember(x => x.RegistrationDate, y => y.MapFrom(z => DateTime.Now));
+
+            CreateMap<Category, CategoryFullViewModel>()
+                .ForMember(x => x.IdCategory, y => y.MapFrom(z => z.IdCategory))
+                .ForMember(x => x.Description, y => y.MapFrom(z => z.Description))
+                .ForMember(x => x.RegistrationDate, y => y.MapFrom(z => z.RegistrationDate));
+
+
         }
     }
 }

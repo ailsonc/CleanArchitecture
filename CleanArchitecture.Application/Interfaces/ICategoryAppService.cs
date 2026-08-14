@@ -5,6 +5,10 @@ namespace CleanArchitecture.Application.Services
 {
     public interface ICategoryAppService
     {
-        Task AddCategory(CategoryViewModel category);
+        Task AddCategory(CategoryBasicViewModel category);
+        Task UpdateCategory(long idCategory, CategoryBasicViewModel category);
+        Task DeleteCategory(long idCategory);
+        Task<CategoryFullViewModel> GetCategoryById(long idCategory);
+        Task<IEnumerable<CategoryFullViewModel>> GetCategoryAll();
     }
 }

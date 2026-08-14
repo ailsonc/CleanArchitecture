@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Application.Services;
 using CleanArchitecture.Application.ViewModels;
+using CleanArchitecture.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.API.Controllers
@@ -8,17 +9,47 @@ namespace CleanArchitecture.API.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryAppService categoryAppService;
+        private readonly ICategoryAppService _categoryAppService;
         public CategoryController(ICategoryAppService categoryAppService)
         {
-            this.categoryAppService = categoryAppService;
+            this._categoryAppService = categoryAppService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllCategories()
+        {
+            var categories = await _categoryAppService.GetCategoryAll();
+            return Ok(categories);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCategoryById(long id)
+        {
+            var category = await _categoryAppService.GetCategoryById(id);
+            return Ok(category);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCategory(long id, CategoryBasicViewModel category)
+        {
+            await _categoryAppService.UpdateCategory(id, category);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCategory(long id)
+        {
+            await _categoryAppService.DeleteCategory(id);
+            return Ok();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory(CategoryViewModel category)
+        public async Task<IActionResult> AddCategory(CategoryBasicViewModel category)
         {
-            await categoryAppService.AddCategory(category);
+            await _categoryAppService.AddCategory(category);
             return Ok();
         }
+
+
     }
 }

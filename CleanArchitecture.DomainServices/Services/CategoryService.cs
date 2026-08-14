@@ -24,7 +24,7 @@ namespace CleanArchitecture.DomainServices.Services
         {
             var categoryAux = await _repository.getById(id);
 
-            if (categoryAux != null)
+            if (categoryAux == null)
                 throw new ArgumentException("Category not found");
 
             await _repository.delete(id);
@@ -44,7 +44,7 @@ namespace CleanArchitecture.DomainServices.Services
         {
             var categoryAux = await _repository.getById(category.IdCategory);
 
-            if (categoryAux != null) 
+            if (categoryAux == null) 
                 throw new ArgumentException("Category not found");
 
             categoryAux.Update(category.Description);
