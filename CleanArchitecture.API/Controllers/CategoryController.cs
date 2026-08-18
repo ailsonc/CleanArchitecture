@@ -1,6 +1,5 @@
-﻿using CleanArchitecture.Application.Services;
+﻿using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Application.ViewModels;
-using CleanArchitecture.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.API.Controllers
@@ -49,7 +48,5 @@ namespace CleanArchitecture.API.Controllers
             await _categoryAppService.AddCategory(category);
             return Ok();
         }
-
-
     }
 }

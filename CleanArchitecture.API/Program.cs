@@ -1,4 +1,5 @@
 using CleanArchitecture.Application.AutoMapper;
+using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Application.Services;
 using CleanArchitecture.Domain.Repositories.Interfaces;
 using CleanArchitecture.Domain.Services;
@@ -20,6 +21,10 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddScoped<IProductAppService, ProductAppService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddSingleton(ConfigAutoMapper.AutoMapperConfiguration().CreateMapper());
 

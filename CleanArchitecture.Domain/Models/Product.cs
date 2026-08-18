@@ -15,5 +15,11 @@ namespace CleanArchitecture.Domain.Models
         #region Navigation Properties
         public Category Category { get; set; }
         #endregion
+        public void Update(string name, string description, decimal price)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+        }
     }
 }

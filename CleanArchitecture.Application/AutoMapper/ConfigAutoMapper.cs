@@ -14,6 +14,7 @@ namespace CleanArchitecture.Application.AutoMapper
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new CategoryMapper());
+                cfg.AddProfile(new ProductMapper());
             });
             return config;
         }

@@ -21,8 +21,6 @@ namespace CleanArchitecture.Application.AutoMapper.Mappers
                 .ForMember(x => x.IdCategory, y => y.MapFrom(z => z.IdCategory))
                 .ForMember(x => x.Description, y => y.MapFrom(z => z.Description))
                 .ForMember(x => x.RegistrationDate, y => y.MapFrom(z => z.RegistrationDate));
-
-
         }
     }
 }

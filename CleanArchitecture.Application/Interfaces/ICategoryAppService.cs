@@ -1,7 +1,7 @@
 ﻿
 using CleanArchitecture.Application.ViewModels;
 
-namespace CleanArchitecture.Application.Services
+namespace CleanArchitecture.Application.Interfaces
 {
     public interface ICategoryAppService
     {
