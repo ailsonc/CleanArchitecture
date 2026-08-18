@@ -17,7 +17,9 @@ namespace CleanArchitecture.Infraestructure.Repositories
         }
         public async Task<Product> getByName(string name)
         {
-            return await _context.Products.FirstOrDefaultAsync(c => c.Name == name);
+            return await _context.Products
+                .Where(c => c.Name.ToLower() == name.ToLower())
+                .FirstOrDefaultAsync();
         }
     }
 }

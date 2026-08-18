@@ -31,8 +31,15 @@ namespace CleanArchitecture.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategory(long id, CategoryBasicViewModel category)
         {
-            await _categoryAppService.UpdateCategory(id, category);
-            return Ok();
+            try
+            {
+                await _categoryAppService.UpdateCategory(id, category);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
@@ -45,8 +52,15 @@ namespace CleanArchitecture.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCategory(CategoryBasicViewModel category)
         {
-            await _categoryAppService.AddCategory(category);
-            return Ok();
+            try
+            {
+                await _categoryAppService.AddCategory(category);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -3,6 +3,8 @@ using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Application.ViewModels;
 using CleanArchitecture.Domain.Models;
 using CleanArchitecture.Domain.Services;
+using CleanArchitecture.Domain.Validators;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CleanArchitecture.Application.Services
 {
@@ -18,7 +20,18 @@ namespace CleanArchitecture.Application.Services
 
         public async Task AddProduct(ProductBasicViewModel product)
         {
+            var validator = new ProductValidator();
+            var validationError = new List<string>();
+
             var productAux = _mapper.Map<Product>(product);
+
+            var results = validator.Validate(productAux);
+            
+            if (!results.IsValid)
+            {
+                validationError.AddRange(results.Errors.Select(e => e.ErrorMessage));
+                throw new InvalidOperationException("The following errors were found:" + string.Join(",", validationError));
+            }
 
             await _productService.add(productAux);
         }
@@ -40,8 +53,19 @@ namespace CleanArchitecture.Application.Services
 
         public async Task UpdateProduct(long idProduct, ProductBasicViewModel product)
         {
+            var validator = new ProductValidator();
+            var validationError = new List<string>();
+
             var productAux = _mapper.Map<Product>(product);
             productAux.IdProduct = idProduct;
+
+            var results = validator.Validate(productAux);
+
+            if (!results.IsValid)
+            {
+                validationError.AddRange(results.Errors.Select(e => e.ErrorMessage));
+                throw new InvalidOperationException("The following errors were found:" + string.Join(",", validationError));
+            }
             await _productService.update(productAux);
         }
     }

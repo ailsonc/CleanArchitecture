@@ -14,5 +14,12 @@ namespace CleanArchitecture.Infraestructure.Repositories
         {
             _context = context;
         }
+
+        public async Task<Category> getByDescription(string description)
+        {
+            return await _context.Categories
+                .Where(c => c.Description.ToLower() == description.ToLower())
+                .FirstOrDefaultAsync();
+        }
     }
 }

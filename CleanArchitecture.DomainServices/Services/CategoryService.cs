@@ -15,7 +15,10 @@ namespace CleanArchitecture.DomainServices.Services
 
         public async Task add(Category category)
         {
-            // Validate the category before adding it
+            var categoryAux = await _repository.getByDescription(category.Description);
+
+            if (categoryAux != null)
+                throw new ArgumentException("Category already exists");
 
             await _repository.add(category);
         }

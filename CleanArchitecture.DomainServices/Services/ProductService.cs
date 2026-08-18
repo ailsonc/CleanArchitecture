@@ -16,6 +16,11 @@ namespace CleanArchitecture.DomainServices.Services
 
         public async Task add(Product product)
         {
+            var productAux = await _repository.getByName(product.Name);
+
+            if (productAux != null)
+                throw new ArgumentException("Product already exists");
+
             await _repository.add(product);
         }
 

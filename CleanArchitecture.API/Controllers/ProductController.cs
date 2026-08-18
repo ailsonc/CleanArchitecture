@@ -33,8 +33,15 @@ namespace CleanArchitecture.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(long id, ProductBasicViewModel product)
         {
-            await _productAppService.UpdateProduct(id, product);
-            return Ok();
+            try
+            {
+                await _productAppService.UpdateProduct(id, product);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
@@ -47,8 +54,15 @@ namespace CleanArchitecture.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(ProductBasicViewModel product)
         {
-            await _productAppService.AddProduct(product);
-            return Ok();
+            try
+            {
+                await _productAppService.AddProduct(product);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
